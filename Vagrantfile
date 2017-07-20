@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Disable SharedFolder by default.
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
-  config.vm.define "cmdbtest0.verwaltung.uni-muenchen.de", primary: true do |node|
+  config.vm.define "cmdbtest0.verwaltung.uni-muenchen.de", primary: false, autostart: AUTOSTART_SECONDARY do |node|
     node.vm.box = "centos/7"
 
     node.vm.provider "virtualbox" do |vb|
@@ -68,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define "cmdb1.verwaltung.uni-muenchen.de", primary: false, autostart: AUTOSTART_SECONDARY do |node|
+  config.vm.define "cmdb1.verwaltung.uni-muenchen.de", primary: true, autostart: true do |node|
     node.vm.box = "centos/7"
 
     node.vm.provider "virtualbox" do |vb|
@@ -128,9 +128,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  "cmdb1.verwaltung.uni-muenchen.de"],
       }
       #ansible.verbose = "vvvv"
-      ansible.verbose = "vvv"
+      #ansible.verbose = "vvv"
       #ansible.verbose = "vv"
-      #ansible.verbose = "v"
+      ansible.verbose = "v"
       #ansible.verbose = ""
       #ansible.limit = "all"
       #ansible.tags = ["setup", "configuration", "update"]
